@@ -1,0 +1,12 @@
+@import '/app.wxss';
+.navbar{left:0;z-index:999;width:100%;}
+.navbar .con-wrap{position: relative;}
+.navbar .left-icon{position: absolute;left: 20rpx;padding-top: 6rpx;}
+.navbar .left-icon .navicons{font-size: 32rpx;}
+.navbar .left-icon1{left: 32rpx;}
+.navbar .left-icon .nav-icons{font-size: 40rpx;}
+.navbar .navcon2{width: 316rpx;margin:0 auto ;}
+.navbar .navcon2 .con2i{color: #4d4d4d;border-bottom: 6rpx solid transparent; }
+.navbar .navcon2 .con2i.active{border-bottom: 6rpx solid #A49E83; color: #A49E83;}
+.navbar .lefticon1{width:50rpx;height: 50rpx;border-radius: 50rpx;background-color: rgba(0,0,0,0.5);text-align: center;line-height: 62rpx;padding-right: 5rpx;
+}

@@ -1,0 +1,48 @@
+/* pages/collage/collage.wxss */
+.bd1 {
+   /* border: 1rpx solid  rgba(244, 218, 216, 0.1); */
+}
+
+.colButton {
+   background-color: #ED4121;
+   color: #FFFFFF;
+}
+
+.btnStyle {
+   height: 56rpx;
+   font-size: 24rpx;
+   line-height: 56rpx;
+   text-align: center;
+}
+
+.goodCountDown {
+   background-color: black;
+   color: white;
+   border-radius: 8rpx;
+   padding: 0 10rpx;
+   line-height: 36rpx;
+   font-size: 20rpx;
+   text-align: center;
+}
+
+.goodCountDownDot {
+   width: 25rpx;
+   text-align: center;
+   line-height: 30rpx;
+}
+
+.activityCountDown {
+   line-height: 81rpx;
+   width: 81rpx;
+   background-color: white;
+   color: black;
+   border-radius: 20rpx;
+   font-size: 40rpx;
+   text-align: center;
+}
+
+.activityCountDownDot {
+   width: 30rpx;
+   text-align: center;
+   line-height: 70rpx;
+}

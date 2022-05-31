@@ -1,0 +1,220 @@
+<view class='cate-wrap' style="width: 100%;overflow-x:hidden;">
+	<view id="app">
+		<view class="vw100">
+			<view class="vw100" style="height: 117.6vw;">
+
+				<view class=" card-wrap p-r" id="position1">
+					<image wx:if="{{goodsData.goodsImgUrlList.length <1}}" src="{{goodsData.goodsCoverImgUrl}}" mode="scaleToFill"></image>
+					<swiper wx:if="{{goodsData.goodsImgUrlList.length >=1}}" circular bindchange="moveServerProSwiper" current="{{swiperCurrent}}">
+						<swiper-item wx:for="{{ imgListFile }}" wx:for-item="item" wx:key="index">
+							<view class='videocover' data-id="{{index}}" bindtap='playbtn' wx:if="{{item.type=='video'}}">
+								<view class='videocoverbg'></view>
+								<image src='../../images/play.png' class='playbtn' bindtap="videoPlay" hidden="{{controls}}"></image>
+							</view>
+							<view wx:if="{{item.type=='video'}}">
+								<video class='box-w block' id="video" src="{{item.url}}" show-center-play-btn="{{false}}" object-fit="contain" bindended="jieshu" poster="{{item.cover}}" controls="{{controls}}" show-mute-btn="true"></video>
+							</view>
+							<image mode="aspectFill" class="detail-banner-img" src="{{item}}" data-src="{{item}}" wx:if="{{item.type!='video'||!item.type}}"></image>
+						</swiper-item>
+					</swiper>
+					<view class="swipindex">
+						{{swiperCurrentNum}}/{{goodsData.goodsImgUrlList.length}}</view>
+				</view>
+			</view>
+			<view class="bdbt w100" style="min-height: 41.6vw;">
+				<view class="flex w100" style="margin: 1.125rem 0 0 0.9375rem;">
+					<view style="width: 83.19%;padding-right: 0.9375rem;">
+						<view class="f18 fw300 c00" style="line-height: 1.5625rem;">
+							{{goodsData.goodsName}}
+						</view>
+					</view>
+					<view style="width: 12.81%;">
+						<image src="../../images/fv.png" style="width: 1.199375rem;height: 1.00875rem;margin-top: 0.1875rem;" />
+					</view>
+				</view>
+				<view class="f13 c6e" style="line-height: 1rem;letter-spacing:0.03125rem;margin: 0.4375rem 0.9375rem 0 0.9375rem;">
+					{{goodsData.sellingPoint}}
+				</view>
+				<view class="flex w100" style="margin:1rem 0 0.8125rem 0.9375rem;">
+					<view style="width: 72.54%;">
+						<view wx:if="{{!goodsData.maxGoodsSalePrice}}" class="f22 fw500 c00" style="line-height: 1.875rem;height: 1.875rem;">
+							￥{{goodsData.minGoodsSalePrice}}
+						</view>
+						<view wx:if="{{goodsData.maxGoodsSalePrice}}" class="f22 fw500 c00" style="line-height: 1.875rem;height: 1.875rem;">
+							￥{{goodsData.minGoodsSalePrice}}-{{goodsData.maxGoodsSalePrice}}
+						</view>
+						<view class="f16 fw300 c6e" style="line-height: 1.375rem;height: 1.375rem;margin-top: 0.4375rem;text-decoration: line-through;">
+							￥{{goodsData.marketPrice}} 起
+						</view>
+					</view>
+					<view class="f13 fw300 c6e text-r pst-ab" style="width: 23.46%;line-height: 1.875rem;right: 1.25rem;">
+						已售：{{goodsData.saleVolume}} 件
+					</view>
+				</view>
+			</view>
+			<view class="bdbt pst-rl flex f-nowrap f-alg-center w100" bindtap="popup" style="height: 13.33vw;">
+				<view class="f15 fw400 c24" style=" margin-left:1.5rem; height: 1.3125rem;line-height: 1.3125rem;">
+					选择
+				</view>
+				<view class="f13 fw400" style="margin-left:1.3125rem;height: 1.125rem;line-height: 1.125rem;color: #656565;">
+					请选择
+				</view>
+				<view class="pst-ab" style="right: 1.4375rem;">
+					<image src="../../images/zk.png" bindtap="popup" style="width: 1.1875rem;height: 0.375rem;" />
+				</view>
+			</view>
+			<view class="bdbt pst-rl flex f-nowrap f-alg-center w100" style="height: 14.67vw;">
+				<view style="background-color: #242424; width: 0.1875rem;height: 1rem;margin-left: 1.0625rem;">
+				</view>
+				<view class="fw400 f17 c24" style="margin-left: 0.375rem;line-height: 1.5rem;">
+					商品评价
+				</view>
+				<view class="pst-ab flex f-alg-center" style="right: 1.0625rem;">
+					<span class="f13 fw400" style="color: #999999;margin-right: 0.5625rem;">APP内查看全部</span><img src="../../images/qb.png" style="width: 0.39375rem;height: 0.738125rem;" />
+				</view>
+			</view>
+			<!-- <view class="bdbt flex f-alg-center f-jus-center w100" > -->
+				<view class="suwrap bgff" style="min-height: 21.6vw;">
+				<view class="t-c p32" wx:if="{{commentList.length <= 0}}" style="color:#C9C9C9">商品刚上线暂无评价~</view>
+				<view class="dis-flex" wx:if="{{commentList.length >0}}">
+					<view class="attl">
+						<image src="{{commentList[0].memberAvatarUrl?commentList[0].memberAvatarUrl:'../../images/logo.png'}}"></image>
+					</view>
+					<view class="attr">
+						<view class="dis-flex " style="justify-content:space-between;width:100%">
+							<view class="col-1 f-30">{{commentList[0].memberNickname}}</view>
+							<view class="col-9 f-22">{{commentList[0].commentDate}}</view>
+						</view>
+						<view class="col-9 f-22" style="padding-top:8rpx">{{commentList[0].skuInfo}}</view>
+						<view>
+							<view class="col-3 f-24 attcon">
+								{{commentList[0].commentContent}}
+							</view>
+						</view>
+						<view wx:if="{{commentList[0].commentImgList}}" style="display:flex;flex-wrap:wrap">
+							<view class="col-3 f-24 attcon">
+								<view class="container_">
+									<view wx:if="{{commentList[0].commentImgList.length==1}}" wx:for="{{commentList[0].commentImgList}}"  wx:key="index"
+										wx:for-item="image" class="previewimg1">
+										<image mode="aspectFill" src="{{image}}" data-src="{{image}}"
+											data-imgs="{{commentList[0].commentImgList}}" bindtap="previewImage"></image>
+									</view>
+									<view wx:if="{{commentList[0].commentImgList.length==2}}" wx:for="{{commentList[0].commentImgList}}" wx:key="index"
+										wx:for-item="image" class="previewimg2">
+										<image mode="aspectFill" src="{{image}}" data-src="{{image}}"
+											data-imgs="{{commentList[0].commentImgList}}" bindtap="previewImage"></image>
+									</view>
+									<view wx:if="{{commentList[0].commentImgList.length>2}}" wx:for="{{commentList[0].commentImgList}}"  wx:key="index"
+										wx:for-item="image" class="previewimg">
+										<image mode="aspectFill" src="{{image}}" data-src="{{image}}"
+											data-imgs="{{commentList[0].commentImgList}}" bindtap="previewImage"></image>
+									</view>
+								</view>
+							</view>
+							<view class="col-3 f-24 dis-flex"
+								style="line-height: 43rpx;padding:10rpx 10rpx 20rpx 10rpx;background-color:#F4F4F4"
+								wx:if="{{commentList[0].replyContent}}">
+								<text wx:if="{{commentList[0].replyType==1}}" class="col-1" style="word-break: keep-all;">商家回复：</text>
+								<text wx:if="{{commentList[0].replyType==2}}" class="col-1" style="word-break: keep-all;">平台回复：</text>
+								<view>
+									<view class="col-6">
+										{{commentList[0].open==true?commentList[0].replyMsgShow:commentList[0].replyContent}}
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+
+
+			<!-- </view> -->
+
+			<view class="flex f-nowrap f-alg-center w100 f17" style="height: 16vw;">
+				<view style="background-color: #242424; width: 0.1875rem;height: 1rem;margin-left: 1.0625rem;">
+				</view>
+				<view class="fw400 f17 c24" style="margin-left: 0.375rem;line-height: 1.5rem;">
+					商品详情
+				</view>
+			</view>
+			<view style="width: 100%;height: auto;padding-bottom: 4.5rem;">
+				<view style="font-size: 0;">
+					<rich-text nodes="{{nodes}}"></rich-text>
+				</view>
+			</view>
+			<view class="download" id="download">
+				<view bindtap="popup" style="width: 70vw;height: 2.8rem;text-align: center;line-height: 2.8rem;background-color:#000000 ;">
+					<span class="span1">APP内购买</span>
+				</view>
+				<!-- <a id="downloadApp" href="http://download.coopoo.com/download.html">
+						<view style="display: flex;flex-wrap: wrap;">
+							<p style="width: 100%;">APP内</p>
+							<p style="width: 100%;">打开</p>
+						</view>
+					</a> -->
+			</view>
+		</view>
+		<view class="popup">
+			<view class="mask {{isShow?'maskpop':''}}"></view>
+			<view class="content {{isShow?'trans':''}}">
+				<view class="w100" style="height: 100%;overflow-y: scroll;">
+					<view class="flex pst-ab w100" style="padding: 0.8125rem 0;align-items: flex-end;background-color: #FFFFFF;">
+						<view>
+							<image mode="aspectFill" style="height:8.18625rem;width: 6.9375rem;margin-left: 0.9375rem;" src="{{skuGoodsImgUrl?skuGoodsImgUrl:goodsData.goodsCoverImgUrl}}" />
+						</view>
+						<view style="margin-left: 0.8125rem;">
+							<view class="f22 fw400 c00" style="height: 1.75rem;line-height: 1.75rem;margin-bottom: 0.6875rem;">
+								￥{{price?price:(goodsData.minGoodsSalePrice+"-"+goodsData.maxGoodsSalePrice)}}</view>
+							<view class="f16 fw400 c00" style="height: 1.375rem;line-height: 1.375rem;margin-right: 0.75rem;display: -webkit-box;word-break: break-all;text-overflow: ellipsis;overflow: hidden;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">
+								{{selectedSkuText?'已选'+selectedSkuText:'请选择'}}
+							</view>
+						</view>
+						<view style="width: 50rpx;height: 50rpx;position: absolute;right: 1.375rem;top: 1.375rem;" bindtap="pophide">
+							<image src="../../images/cl.png" style="width:0.731875rem ;height: 0.731875rem;float: right;" />
+						</view>
+					</view>
+					<view style="overflow-y: scroll;min-height: 70%;padding-bottom: 5.5rem;padding-top:10.0625rem;">
+						<view style="margin-bottom: 0.625rem;padding-top: 0.625rem;">
+							<view class="wrap wrap-sku">
+								<view class="product-box">
+									<view class="product-content">
+										<view class="product-delcom" wx:for="{{ simulatedDATA.specifications }}" wx:for-item="ProductItem" wx:key="index" wx:for-index="index">
+											<p class="f16 fw600 c00" style="height: 1.375rem; line-height: 1.375rem;margin-left: 15px;">
+												{{ProductItem.name}}
+											</p>
+											<ul class="product-footerlist flex f-wrap">
+												<li class="f15 c00 fw400" style="list-style:none;" wx:for="{{ ProductItem.item }}" wx:for-item="oItem" wx:key="skuId" wx:for-index="n" data-name="{{ProductItem.name}}" data-item="{{oItem.name}}" data-n="{{n}}" data-index="{{index}}" bindtap="specificationBtn" class="{{oItem.isShow?'':'noneActive'}} {{subIndex[index] == n?'productActive':''}}">
+													{{oItem.name}}
+												</li>
+											</ul>
+										</view>
+										<!-- <p v-if="price" class="price">价格：<span style="color: red;">
+												{{price}}</span></p> -->
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class="flex" style="border-top: 0.0625rem solid #6E6E6E;margin: 0.625rem 0.75rem;justify-content: space-between;padding-top: 1.6875rem;">
+							<view class="f16 fw600 c00" style="margin-left: 0.1875rem;">
+								购买数量
+							</view>
+							<view class="edit-num flex f-alg-center">
+								<view class="minu-num" bindtap="minu">-</view>
+								<view class="input-num">{{buynums}}</view>
+								<view class="plus-num" bindtap="plus">+</view>
+							</view>
+						</view>
+					</view>
+					<view class="buyfooter">
+						<view bindtap="enterSku" style="width: 70vw;height: 2.8rem;text-align: center;line-height: 2.8rem;background-color:#000000 ;">
+							<span class="span1">APP内购买</span>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+</view>
+<view style="height:98rpx"></view>

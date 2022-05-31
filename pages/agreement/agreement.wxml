@@ -1,0 +1,4 @@
+<!--pages/agreement/agreement.wxml-->
+<view><web-view src="https://app.coopoo.com/privacy.html"></web-view>
+</view>
+			

@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<navbar class="navbar-wrap b-b" parameter="{{parameter}}"></navbar>
+<view>
+   <view style="padding:36rpx 81rpx 108rpx">
+      <view class="payView">
+         <block>
+            <image class="successIcon" src="../../images/stateImg/paymentSuccessful.png" mode="cover"></image>
+            <text class=" f-32" style="color:black">成功支付￥{{payPrice}}</text>
+         </block>
+         <view class="f-28 dis-flex" style="width: 100%;text-align: center;flex-wrap: nowrap;">
+            <button open-type="share" style="height: 88rpx;width: 100%;text-align: center;line-height: 88rpx;color: white;margin-top: 120rpx;background-color: #ED4121;border-radius: 0;font-size: 28rpx;">邀请好友拼单
+         </button>
+         <view style="width: 80rpx;"></view>
+         <view  bindtap="getDownload" style="height: 88rpx;width: 100%;text-align: center;line-height: 88rpx;color: #ED4121;margin-top: 120rpx;border: 1rpx solid #ED4121;">
+          下载靠谱家App
+         </view>
+         </view>
+      </view>
+   </view>
+</view>

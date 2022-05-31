@@ -1,0 +1,102 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/collage/collage",
+    "pages/paySuccess/collagaePaySuccess",
+    "pages/paySuccess/bargainPaySuccess",
+    "pages/myOrder/myOrder",
+    "pages/collage/collageResult",
+    "pages/bargain/bargainResult",
+    "pages/bargain/helpChop",
+    "pages/bargain/detail",
+    "pages/confirmOrder/confirmOrder",
+    "pages/collageGood/collageGood",
+    "components/wxLogin/wxLogin",
+    "pages/good/detail",
+    "pages/my/my",
+    "pages/address/address",
+    "pages/invite/jump",
+    "pages/agreement/agreement",
+    "pages/bargain/bargain",
+    "pages/editAddress/editAddress",
+    "pages/barginGood/barginGood"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "靠谱家",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#CDCDCD",
+    "selectedColor": "#000000",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabBar/home.png",
+        "selectedIconPath": "images/tabBar/home_on.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/tabBar/user.png",
+        "selectedIconPath": "images/tabBar/user_on.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "usingComponents": {
+    "navbar": "./components/navbar/index",
+    "wxLogin": "./components/wxLogin/wxLogin",
+    "van-count-down": "@vant/weapp/count-down/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-overlay": "@vant/weapp/overlay/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-steps": "@vant/weapp/steps/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-transition": "@vant/weapp/transition/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index"
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

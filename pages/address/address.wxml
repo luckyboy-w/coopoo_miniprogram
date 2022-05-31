@@ -1,0 +1,66 @@
+<!--pages/address/address.wxml-->
+<navbar class="navbar-wrap" parameter="{{parameter}}"></navbar>
+<view class="address-container" wx:if="{{result && result.length}}">
+
+  <view class="address-view">
+
+      <!-- 地址列表 循环体 开始 -->
+      <view class="address-list" wx:for="{{result}}" wx:key="id">
+        <van-swipe-cell class="address-list-swipe" right-width="{{ 60 }}" >
+          <view class="address-list-content"  bindtap="goback" data-id="{{item.id}}" data-name="{{item.receiveUser}}" data-mobile="{{item.receivePhone}}" data-address="{{item.provinceText}}{{item.cityText}}{{item.areaText}}{{item.address}}">
+             <view class="address-user-info ">
+              <text class="address-username f-28">{{item.receiveUser}}</text>
+              <text class="f-24">{{item.receivePhone}}</text>
+              <text wx:if="{{item.isDefault==1}}"  class="set-default">默认</text>
+            </view>
+            <view class="address-address col-80 f-24">
+              {{item.provinceText}}{{item.cityText}}{{item.areaText}}{{item.address}}
+            </view>
+            <view 
+            class="address-edit-icon" 
+            data-url="/pages/editAddress/editAddress?id={{item.id}}&receiveUser={{item.receiveUser}}&receivePhone={{item.receivePhone}}&provinceId={{item.provinceId}}&provinceText={{item.provinceText}}&cityId={{item.cityId}}&cityText={{item.cityText}}&address={{item.address}}&areaText={{item.areaText}}&areaId={{item.areaId}}&isDefault={{item.isDefault}}" catchtap="editAddress">
+              <van-image
+                width="32rpx"
+                height="32rpx"
+                src="/images/edit.png"
+              />
+            </view>
+          </view>
+
+          <view slot="right" class="van-swipe-cell__right dis-flex flex-y-center flex-x-center" data-id="{{item.id}}" catchtap="delAddress">
+            <van-image
+                width="38rpx"
+                height="38rpx"
+                src="/images/d_edit.png"
+              /></view>
+        
+        </van-swipe-cell>
+      </view>
+      <!-- 地址列表 循环体 结束 -->
+
+
+  </view>
+   <view class="btn-addadress-view" data-url="/pages/editAddress/editAddress" catchtap="goto">
+    <view block class="btn-main ls1" >添加新地址</view>
+  </view>
+</view>
+
+<view class="address-container" wx:else>
+  <!-- 空数据 -->
+  <view class="nodata t-c">
+    <view class="t-c dis-flex" style="padding:0 17vw; margin-top:35%">
+      <image mode="widthFix" src="https://bucket.coopoo.com/coopoo-images/No receiving address at present.png" />
+    </view>
+    <!-- <view class="t-c f-24  ls2 col-9" style="padding-top:10rpx">
+      <view>您还没有地址，</view>
+      <view>可以点击底部按钮新建地址</view>
+    </view> -->
+  </view>
+  <!-- 空数据 end -->
+  <view class="btn-addadress-view" data-url="/pages/editAddress/editAddress" catchtap="goto">
+    <view block class="btn-main ls1" >新增收货地址</view>
+  </view>
+</view>
+ 
+<van-dialog id="van-dialog" />
+<van-toast id="van-toast" />

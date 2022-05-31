@@ -1,0 +1,224 @@
+<!--pages/collage/collage.wxml-->
+<navbar class="navbar-wrap b-b" parameter="{{parameter}}"></navbar>
+<view class="" style="position: relative;overflow-y: hidden;">
+   <image mode="widthFix" style="width:100%;position: absolute;top: 1278rpx;" src="../../images/collageImg/collageBgimg.png">
+      <!-- 背景图 -->
+   </image>
+   <view class="bd1" style="width:100%;height:1293rpx;position: relative;">
+      <!-- 大图 -->
+      <image style="width:100%;height:100%" src="https://bucket.coopoo.com/wx-mini/collageActivityIndex2.png"></image>
+   </view>
+   <view wx:if="{{(activityData.processCollageGoodsList && activityData.processCollageGoodsList.length>=1)||(activityData.orderList && activityData.orderList.length>=1)}}" class="bd1" style="position: relative;height: 62rpx;margin: 100rpx 203rpx 58rpx;">
+      <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/executing.png"></image>
+   </view>
+   <view wx:if="{{(activityData.processCollageGoodsList && activityData.processCollageGoodsList.length>=1)||(activityData.orderList && activityData.orderList.length>=1)}}" class="" style="margin: 0 31rpx;position: relative;background-color: white;border-radius: 5rpx;padding: 80rpx 0 50rpx;">
+      <!-- <image style="width:100%;height:100%;position: absolute;" src="../../images/collageImg/img2.png"></image> -->
+      <view wx:for="{{activityData.processCollageGoodsList}}" wx:for-item="item" wx:key="id" class="" style="position: relative;">
+         <view class="dis-flex" style="padding: 0rpx 38rpx 30rpx 38rpx;flex-wrap: nowrap;">
+            <view class="bd1" style="height: 218rpx;min-width: 218rpx;">
+               <image style="width:100%;height:100%;" mode="aspectFill" src="{{item.goodsImg}}"></image>
+            </view>
+            <view class="dis-flex" style=" width: 100%; flex-wrap: wrap;align-content: space-between;padding-left: 14rpx;">
+               <view class="bd1" style="width: 100%;font-size: 26rpx;color: #ED4121;line-height: 36rpx;">
+                  还差{{item.personNum-item.partNum}}人成团
+               </view>
+               <!-- <van-count-down time="{{item.endTimeSeconds}}" format="HH:mm:ss">
+                  <view default="{{timeData_}}">
+                  <view class="bd1 dis-flex" style="width: 100%;flex-wrap: nowrap;">
+                     <view class="goodCountDown">{{ timeData_.hours }}</view>
+                     <view class="goodCountDownDot">:</view>
+                     <view class="goodCountDown">{{ timeData_.minutes }}</view>
+                     <view class="goodCountDownDot">:</view>
+                     <view class="goodCountDown">{{ timeData_.seconds }}</view>
+                     <view style="font-size:22rpx;margin-left:10rpx;line-height: 36rpx;">后结束</view>
+                  </view></view>
+               </van-count-down> -->
+               <van-count-down time="{{item.endTimeSeconds*1000}}" format="HH : mm : ss " />
+                  <view style="font-size:22rpx;margin-left:10rpx;line-height: 40rpx;">后结束</view>
+               <view class="bd1" style="width: 100%;">
+                  <button open-type="share" data-type="inviteCollage" style="border-radius:0;" data-goodsId="{{item.goodsId}}" data-marketingGoodsId="{{item.id}}" data-goodsImg="{{item.goodsImg}}" data-collageId="{{item.collageId}}" class="colButton btnStyle">邀请好友拼单</button>
+               </view>
+            </view>
+         </view>
+      </view>
+      <view wx:for="{{activityData.orderList}}" wx:for-item="item" wx:key="index" class="" style="position: relative;">
+         <view class="dis-flex" style="padding: 0rpx 38rpx 30rpx 38rpx;flex-wrap: nowrap;">
+            <view class="bd1" style="height: 218rpx;min-width: 218rpx;">
+               <image style="width:100%;height:100%;" mode="aspectFill" src="{{item.goodsImg}}"></image>
+            </view>
+            <view class="dis-flex" style=" width: 100%; flex-wrap: wrap;align-content: space-between;padding-left: 14rpx;">
+               <view class="bd1" style="width: 100%;font-size: 26rpx;color: #ED4121;line-height: 36rpx;">
+                  {{item.goodsName}} 
+               </view>
+               <van-count-down time="{{item.endTimeSeconds*1000}}" format="HH : mm : ss " />
+               <view style="font-size:22rpx;margin-left:10rpx;line-height: 40rpx;">自动取消订单</view>
+               <view class="bd1" style="width: 100%;">
+                  <view bindtap="goPay" data-orderNo="{{item.orderNo}}" data-collageId="{{item.collageId}}" data-payPrice="{{item.payPrice}}" data-goodsImg="{{item.goodsImg}}" data-goodsId="{{item.goodsId}}" data-marketingGoodsId="{{item.marketingGoodsId}}" class="colButton btnStyle">去支付￥{{item.payPrice}}</view>
+               </view>
+            </view>
+         </view>
+      </view>
+   </view>
+   <view class="bd1" style="position: relative;height: 492rpx;margin: 180rpx 50rpx 40rpx;">
+      <!-- 倒计时 -->
+      <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/countDown.png"></image>
+      <view class="bd1 dis-flex" style="position: relative;flex-wrap: wrap;padding: 40rpx 80rpx 200rpx;height: 100%;width: 100%;text-align: center;align-items: center;justify-content: center;">
+         <view class="bd1" style="width: 100%;font-size: 44rpx;">
+            活动结束倒计时
+         </view>
+         <van-count-down use-slot time="{{activityTime}}" bind:change="onChange" bind:finish="finished">
+            <view class="bd1 dis-flex" style="width: 100%;font-size: 44rpx;flex-wrap: nowrap;justify-content: space-between;">
+               <view style="font-size:46rpx;line-height: 81rpx;margin-right: 10rpx;">{{ timeData.days }} 天</view>
+               <view class="activityCountDown">{{ timeData.hours }}</view>
+               <view class="activityCountDownDot">:</view>
+               <view class="activityCountDown">{{ timeData.minutes }}</view>
+               <view class="activityCountDownDot">:</view>
+               <view class="activityCountDown">{{ timeData.seconds }}</view>
+            </view>
+         </van-count-down>
+      </view>
+   </view>
+   <view class="bd1" style="position: relative;height: 430rpx;margin:31rpx;background-color: white;border-radius: 5rpx;">
+      <!-- 浏览数 -->
+      <!-- <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/img4.png"></image> -->
+      <view class="bd1 dis-flex" style="position: relative;flex-wrap: wrap;padding: 50rpx 18rpx;height: 100%;width: 100%;text-align: center;align-items: center;">
+         <view class="bd1" style="width: 100%;font-size: 36rpx;line-height: 50rpx;">
+            · · ·  活动浏览人数{{activityData.browseCount}}人  · · ·
+         </view>
+         <view class="bd1 dis-flex" style="width: 100%;font-size: 44rpx;flex-wrap: wrap;">
+            <view class="bd1" style="width: 84rpx;height: 84rpx;margin: 20rpx 13rpx;border-radius: 50%;">
+               <image style="width:100%;height:100%;border-radius: 50%;" mode="aspectFill" src="{{myAvatar}}"></image>
+            </view>
+            <view wx:for="{{browseRecordList}}" wx:for-item="item" wx:key="id" class="bd1" style="width: 84rpx;height: 84rpx;margin: 20rpx 13rpx;border-radius: 50%;">
+               <image style="width:100%;height:100%;border-radius: 50%;" mode="aspectFill" src="{{item.wxAvatar}}"></image>
+            </view>
+         </view>
+
+      </view>
+   </view>
+
+   <view class="bd1" style="position: relative;height: 746rpx;margin:80rpx 31rpx 0;border-radius: 5rpx;background-color: white;">
+      <!-- 下单数 -->
+      <!-- <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/img5.png"></image> -->
+      <view class="" style="position: relative;padding:66rpx 45rpx 48rpx;">
+         <view class=" dis-flex" style="height: 50rpx;flex-wrap: nowrap;justify-content: space-around;font-size: 26rpx;">
+            <view class="" style="height: 40rpx;">
+               已购买{{activityData.buyNum}}件
+            </view>
+            <view class="" style="height: 40rpx;border: 1.5px solid black;background-color: black;">
+            </view>
+            <view class="" style="height: 40rpx;">
+               还剩{{activityData.residueStockNum}}件
+            </view>
+         </view>
+         <view>
+            <swiper style='height: 570rpx;' vertical="true" autoplay="true" circular="true" interval="2000" display-multiple-items='5'>
+               <view>
+                  <block wx:for-item="item" wx:for='{{orderRecordList}}' wx:key="index">
+                     <swiper-item catchtouchmove='catchTouchMove'>
+                        <view class=" dis-flex" style="flex-wrap: nowrap;padding: 24rpx 0 6rpx;justify-content: space-between;">
+                           <view class=" dis-flex" style="flex-wrap: nowrap;">
+                              <view class="" style="width: 84rpx;height: 84rpx;border-radius: 50%;">
+                                 <image style="width:100%;height:100%;border-radius: 50%;" mode="aspectFill" src="{{item.wxAvatar}}"></image>
+                              </view>
+                              <view class="" style="margin-left: 10rpx;width: 150rpx;">
+                                 <view class="onelist-hidden" style="font-size: 26rpx;line-height: 44rpx;">
+                                    {{item.wxUsername}}
+                                 </view>
+                                 <view class="onelist-hidden" style="font-size: 20rpx;line-height: 40rpx;">
+                                    支付：{{item.payAmount}}元
+                                 </view>
+                              </view>
+                           </view>
+                           <view class="" style="font-size: 20rpx;width: 225rpx;">
+                              <view class="onelist-hidden" style="line-height: 42rpx;">
+                                 {{item.goodsName}}
+                              </view>
+                              <view class="" style="line-height: 42rpx;">
+                                 下单时间：{{item.createTime}}
+                              </view>
+                           </view>
+                        </view>
+                     </swiper-item>
+                  </block>
+               </view>
+            </swiper>
+         </view>
+      </view>
+   </view>
+   <view class="bd1" style="position: relative;height: 60rpx;margin: 140rpx 224rpx 63rpx;">
+      <!-- 活动商品 -->
+      <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/activityGoods.png"></image>
+   </view>
+   <view class="bd1" style="position: relative;margin: 0 49rpx ;border-radius: 5rpx;">
+      <!-- 商品列表 -->
+      <!-- <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/img6.png"></image> -->
+
+      <view  bindtap="getGoodDetail" data-goodsId="{{item.goodsId}}" data-marketingGoodsId="{{item.id}}"  wx:for="{{goodsList}}" wx:for-item="item" wx:key="id" style="width: 653rpx;height: 654rpx;position: relative;margin-bottom: 35rpx;">
+         <image style="position: absolute;width:100%;height:100%;z-index: 1;" src="../../images/collageImg/goodsBg.png"></image>
+         <image style="width:100%;height:100%;position: absolute;z-index: 0;" mode="aspectFill" src="{{item.goodsImg}}"></image>
+         <view style="position: absolute; z-index: 2;bottom: 25rpx; left: 30rpx;height: 140rpx;color: white;">
+            <view style="font-size: 41rpx;line-height: 50rpx;">
+              成团数：
+            </view>
+            <view style="display: flex;align-items: center;">
+               <text style="font-size: 70rpx;margin-left: 20rpx;">{{item.personNum}} </text> <text style="font-size: 60rpx;margin-left: 10rpx;"> 人</text>
+            </view>
+         </view>
+         <view class="onelist-hidden" style="position: absolute; z-index: 2;bottom: 32rpx; left: 300rpx;color: #E9793B;width: 250rpx;">
+            {{item.goodsName}}
+         </view>
+      </view>
+
+      <!-- <view class="" style="position: relative;padding: 90rpx 0 60rpx;">
+         <view wx:for="{{goodsList}}" wx:for-item="item" wx:key="id" class="dis-flex" style="margin: 0 38rpx 30rpx 38rpx;flex-wrap: nowrap;">
+            <view class="bd1" style="height: 218rpx;min-width: 218rpx;">
+               <image style="width:100%;height:100%;" mode="aspectFill" src="{{item.goodsImg}}"></image>
+            </view>
+            <view class="dis-flex" style="flex-wrap: wrap;align-content: space-between;padding-left: 14rpx;width: 100%;">
+               <view class="bd1 twolist-hidden" style="width: 100%;font-size: 26rpx;color: #ED4121;line-height: 36rpx;">
+                  {{item.goodsName}}
+               </view>
+               <view class="bd1 dis-flex" style="width: 100%;font-size: 28rpx;">
+                  ￥{{item.salePrice}}
+               </view>
+               <view class="bd1" style="width: 100%;" bindtap="getGoodDetail" data-goodsId="{{item.goodsId}}" data-marketingGoodsId="{{item.id}}">
+                  <view class="colButton btnStyle">{{item.personNum}}人成团</view>
+               </view>
+            </view>
+         </view>
+      </view> -->
+   </view>
+      <!-- 活动规则 -->
+   <!-- <view class="bd1" style="position: relative;height: 65rpx;margin: 127rpx 193rpx 93rpx;">
+      <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/activityRule.png"></image>
+   </view>
+   <view class="bd1" style="position: relative;height: 516rpx;margin: 0 31rpx;">
+      <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/img7.png"></image>
+   </view> -->
+   <view class="bd1" style="position: relative;height: 61rpx;margin: 87rpx 224rpx 58rpx;">
+      <!-- 门店地址 -->
+      <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/storeAdress.png"></image>
+   </view>
+   <view class="bd1" style="position: relative;height: 516rpx;margin:0 31rpx 200rpx;border-radius: 5rpx;background-color: white;">
+      <!-- 绑定门店 -->
+      <!-- <image style="position: absolute;width:100%;height:100%" src="../../images/collageImg/img8.png"></image> -->
+      <view class="dis-flex" style="height: 516rpx;position: relative;padding: 100rpx 56rpx ;text-align: center;font-size: 40rpx;color:black;align-content: space-around;flex-wrap: wrap;">
+         <view style="width: 100%;">
+            {{storeInfo.storeAddress}}
+         </view>
+         <view style="width: 100%;">
+            联系方式：{{storeInfo.phoneNo}}
+         </view>
+      </view>
+   </view>
+   <view class="bd1" style="position: fixed;width: 100%; height:168rpx;bottom: 0;text-align: center;z-index: 99;">
+      <!-- 分享活动 -->
+      <button bindtap="shareUrl" wx:if="{{showShare}}" class="colButton" style="width: 538rpx;height: 88rpx;border-radius: 44rpx;margin-top: 50rpx;line-height: 88rpx;">分享活动</button>
+      <button open-type="share" wx:if="{{!showShare}}" class="colButton" style="width: 538rpx;height: 88rpx;border-radius: 44rpx;margin-top: 50rpx;line-height: 88rpx;">分享活动</button>
+   </view>
+   <view bindtap="goMyOrder" style="position: fixed;top: 60%;right: 0;width: 132rpx;height: 62rpx;z-index: 99;">
+      <image style="height: 100%;width: 100%;" src="../../images/myIcon.png"></image>
+   </view>
+</view>
+<wxLogin showLogin="{{showLogin}}"></wxLogin>

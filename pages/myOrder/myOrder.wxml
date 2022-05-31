@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<!-- <navbar class="navbar-wrap b-b" parameter="{{parameter}}"></navbar> -->
+<view>
+   <web-view src="{{myUrl}}"></web-view>
+</view>

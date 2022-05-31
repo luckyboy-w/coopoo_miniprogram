@@ -1,0 +1,71 @@
+/* pages/address/address.wxss */
+page{
+  background-color: #F7F7F7;
+}
+.address-container{padding-bottom: 140rpx;}
+.address-container .address-view {
+  border-top: 1px solid #ededed;
+}
+.address-list{
+  margin:25rpx 0 0 0;
+  background-color: #FFFFFFFF;
+  border-bottom: 1px solid #ededed;
+}
+.address-list-content{
+  padding: 38rpx 110rpx 38rpx 32rpx;
+  position: relative;
+}
+.address-user-info{
+  color: #1A1A1A;
+  font-weight: bold;
+  height: 32rpx;
+  line-height: 32rpx;
+  border-right: 1rpx solid #ccc;
+}
+.address-username{
+  margin-right: 78rpx;
+}
+.address-address{
+  font-size: 26rpx;
+  line-height: 40rpx;
+  padding-top: 28rpx;
+  border-right: 1rpx solid #ccc;
+}
+.van-swipe-cell__right{
+  background-color: red;
+  width: 120rpx;
+  height: 100%;
+  color: #fff;
+}
+
+.del-address{
+  position: absolute;
+  width: 120rpx;
+  height: 100%;
+  color: #fff;
+  right: 0;
+  background-color: red;
+}
+.address-edit-icon{
+  position: absolute;
+  width: 32rpx;
+  height: 32rpx;
+  top: calc(50% - 16rpx);
+  right: 42rpx;
+}
+
+.address-container .btn-addadress-view{
+  position: fixed;
+  width: 100%;
+  height: 120rpx;
+  bottom: 0rpx;
+  background-color: #000000;
+}
+.set-default{
+  margin-left: 20rpx;
+  font-size: 14px!important;
+  color: #FFFFFFFF!important;
+  background-color: black!important;
+  font-weight: 400!important;
+  padding: 0 10rpx;
+}

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-tree-select": "@vant/weapp/tree-select/index"
+  },
+  "navigationBarBackgroundColor":"#FFFFFF",
+  "navigationBarTextStyle":"black",
+  "backgroundTextStyle": "dark",
+  "navigationBarTitleText":"商品详情",
+  "navigationStyle":"default"
+}

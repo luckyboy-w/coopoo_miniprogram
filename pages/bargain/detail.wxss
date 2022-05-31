@@ -1,0 +1,20 @@
+/* pages/bargain/detail.wxss */
+page{
+    background-color: #FFFAF1;
+}
+.goodCountDown {
+    background-color: black;
+    color: white;
+    border-radius: 8rpx;
+    width: 50rpx;
+    line-height: 52rpx;
+    font-size: 28rpx;
+    text-align: center;
+ }
+ 
+ .goodCountDownDot {
+    width: 30rpx;
+    text-align: center;
+    line-height: 46rpx;
+ }
+ 

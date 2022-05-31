@@ -1,0 +1,17 @@
+/* components/wxLogin/wxLogin.wxss */.van-overlay{background-color: rgba(0,0,0,0.86) !important;}
+@import '/app.wxss';
+.flex_{display:flex;}
+.flex_nowrap{flex-wrap:nowrap;}
+.inputStyle{
+    width: 690rpx;
+    height: 98rpx;
+}
+.pdl{padding-left: 25rpx;}
+.acwrap .van-popup{background-color: #fff !important;}
+.login-wrap{padding: 45rpx 32rpx  55rpx;}
+.login-zdy-wrap .b-b{border-bottom:3rpx dashed #e6e6e6;}
+.llgintit{padding-bottom: 40rpx;}
+.pb20{padding-bottom:  20rpx;}
+.login-zdy-wrap {padding: 20rpx 60rpx;}
+.input-wrap{padding: 62rpx 0 22rpx;}
+.san-wrap{position: absolute;bottom: 0rpx;left: 0; padding: 0 150rpx 70rpx;width:100%;}

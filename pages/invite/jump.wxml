@@ -1,0 +1,4 @@
+<!--pages/invite/jump.wxml-->
+<view>
+  <web-view src="{{jumpUrl}}"></web-view>
+</view>

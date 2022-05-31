@@ -1,0 +1,76 @@
+<!--pages/bargain/detail.wxml-->
+<navbar class="navbar-wrap b-b" parameter="{{parameter}}"></navbar>
+<view>
+    <view style="position: relative;width: 100%;height: 1124rpx;background: -webkit-linear-gradient(top,#FFC655,#FFE1A7,#FFFBF4);">
+        <view style="position: relative;width:690rpx;height: 962rpx;padding: 100rpx 30rpx;">
+            <image style="position: absolute;width:100%;height: 100%;" src="../../images/barginDetail_.png"></image>
+            <image style="border-radius: 50%; position: absolute;width:112rpx;height: 112rpx;top: 44rpx;left: 319rpx;" src="{{bargainInfoData.wxAvatar}}"></image>
+
+            <view style="position: relative;">
+                <view style="width: 690rpx;height: 64rpx;line-height: 64rpx;font-size: 28rpx;text-align: center;margin-top: 56rpx;">
+                    {{bargainInfoData.wxUsername}}
+                </view>
+                <view style="border-radius: 20rpx; width: 612rpx;height: 268rpx;margin: 0 39rpx;box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.16);padding: 30rpx 21rpx;">
+                    <view class="dis-flex" style="flex-wrap: nowrap;">
+                        <view style="height: 208rpx;min-width: 208rpx;">
+                            <image style="width:100%;height:100%;" mode="aspectFill" src="{{bargainInfoData.goodsImg}}"></image>
+                        </view>
+                        <view class="dis-flex" style="flex-wrap: wrap;align-content: space-between;padding-left: 14rpx;">
+                            <view class="twolist-hidden" style="width: 100%;font-size: 26rpx;line-height: 36rpx;">
+                                {{bargainInfoData.goodsName}}
+                            </view>
+                            <view style="width: 100%;">
+                                <view style="height: 44rpx;line-height: 44rpx;"><text class="f-32 f-w0" style="color: #ED4121;">最低价¥{{bargainInfoData.floorPrice}}</text> <text class="f-28" style="color: #999999;margin-left: 20rpx;text-decoration: line-through;">￥{{bargainInfoData.goodsPrice}}</text></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view style="position: relative; height: 880rpx; width: 690rpx;padding: 184rpx 46rpx 0;text-align: center;">
+                <view style="width: 542rpx;height: 186rpx;position: relative;margin-left: 28rpx;">
+                    <image src="../../images/djsBD.png" style="width: 100%;height: 100%;position: absolute;left: 0;"> </image>
+                    <view class="f-34 ls2" style="line-height: 48rpx;">
+                        距离结束还有
+                    </view>
+                    <van-count-down use-slot time="{{activityTime}}" bind:change="onChange" bind:finish="finished">
+
+                        <view class=" dis-flex" style="width: 100%;flex-wrap: nowrap;margin-top: 40rpx;justify-content: center;">
+                            <!-- 21 ：36 ：42后结束 -->
+                            <view class="goodCountDown">{{ timeData.hours }}</view>
+                            <view class="goodCountDownDot">:</view>
+                            <view class="goodCountDown">{{ timeData.minutes }}</view>
+                            <view class="goodCountDownDot">:</view>
+                            <view class="goodCountDown">{{ timeData.seconds }}</view>
+                        </view>
+                    </van-count-down>
+                </view>
+                <view bindtap="getBargain" class="f-36" style="height: 88rpx;width: 100%;text-align: center;line-height: 88rpx;background-color: #ED4121;color: white;margin-top: 58rpx;">
+                    帮朋友砍一刀
+                </view>
+            </view>
+        </view>
+    </view>
+    <view style="background-color: #FFFFFF;min-height: 300rpx;margin: 44rpx 0 100rpx;">
+        <view style="text-align: center;font-size: 44rpx;">
+            —— 活动商品 ——
+        </view>
+        <view style="margin-top: 40rpx;">
+            <view  wx:for="{{bargainInfoData.goodsList}}" wx:for-item="item" wx:key="id" class="dis-flex" style="margin: 0 30rpx 34rpx ;flex-wrap: nowrap;">
+                <view class="bd1" style="height: 248rpx;min-width: 248rpx;">
+                    <image style="width:100%;height:100%;" mode="aspectFill" src="{{item.goodsImg}}"></image>
+                </view>
+                <view class="dis-flex" style="flex-wrap: wrap;align-content: space-between;padding-left: 20rpx;">
+                    <view class="bd1 twolist-hidden" style="width: 100%;font-size: 26rpx;line-height: 36rpx;">
+                       {{item.goodsName}}
+                    </view>
+                    <view class="bd1 dis-flex" style="width: 100%;font-size: 32rpx;">
+                        ￥{{item.salePrice}}
+                    </view>
+                    <view class="bd1" style="width: 100%;" bindtap="getGoodDetail" data-goodsId="{{item.goodsId}}" data-marketingGoodsId="{{item.id}}">
+                        <view class="colButton btnStyle">{{item.floorPrice}}元拿走</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

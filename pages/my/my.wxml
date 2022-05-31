@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="container">
+   <view class="userinfo">
+      <block wx:if="{{!hasUserInfo}}">
+         <button bindtap="getUserProfile"> 获取头像昵称 </button>
+         <!-- <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
+      </block>
+      <block wx:else>
+         <image class="userinfo-avatar" src="{{wxUserInfo.avatarUrl}}" mode="cover"></image>
+         <text class="userinfo-nickname">{{wxUserInfo.nickName}}</text>
+      </block>
+   </view>
+   <!-- <view>
+      <button bindtap="clearUserInfo">
+         清除用户信息
+      </button>
+   </view> -->
+</view>

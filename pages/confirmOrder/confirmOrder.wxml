@@ -1,0 +1,82 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<navbar class="navbar-wrap" parameter="{{parameter}}"></navbar>
+<view class="orderdetail-container" style="padding-top:18rpx" wx:if="{{true}}">
+    <view class="order-detail-view b-t">
+        <view wx:if="{{orderData.deliveryType==3}}" class="dis-flex flex-y-center address-view ">
+            <view class="flex-box">
+                <view class="people-info-view dis-flex flex-y-center" data-id="{{storeInfo.storeId}}">
+                    <van-image class="dis-flex" width="28rpx" height="34rpx" src="{{locationIcon}}" />
+                    <text class="people-name col-1 f-32">{{storeInfo.storeName?storeInfo.storeName:'暂无门店信息'}}</text>
+                </view>
+                <view class="address">{{storeInfo.storeAddress?storeInfo.storeAddress:''}}</view>
+            </view>
+        </view>
+        <view wx:if="{{orderData.deliveryType==2}}" class="dis-flex flex-y-center address-view " bindtap="goNav" data-url="../address/address">
+            <view class="flex-box">
+                <view class="people-info-view dis-flex flex-y-center" data-id="{{addressData.id}}">
+                    <van-image class="dis-flex" width="28rpx" height="34rpx" src="{{locationIcon}}" />
+                    <text class="people-name col-1 f-32"><text class="col=80" wx:if="{{!addressData || addressData == '{}' || addressData == null }}">暂无收货地址</text>{{addressData.receiveUser}}</text>
+                    <text class="mobile col-1 f-28" style="line-height: 32rpx;height: 32rpx;">{{addressData.receivePhone}}</text>
+                </view>
+                <view class="address">{{addressData.provinceText}} {{addressData.cityText}} {{addressData.areaText}}
+                    {{addressData.address}}</view>
+            </view>
+            <view class="" style="margin-left:30rpx">
+                <van-icon name="arrow" class="col-9 f32" />
+            </view>
+        </view>
+        <view class="order-goods-card">
+            <view class="order-shop-view dis-flex flex-y-center">
+                <van-image class="dis-flex" width="34rpx" height="33rpx" src="{{shopIcon}}" />
+                <view class="shop-name dis-flex col-1 ">{{orderData.supplierName}}</view>
+            </view>
+            <view class="goods-view">
+                <!-- 循环体 开始 -->
+                <view class="order-goods-view">
+                    <view class="goods-left">
+                        <image class="bean-icon" style="width:200rpx;height:200rpx" src="{{orderData.goodsCoverImgUrl}}" />
+                    </view>
+                    <view class="goods-right">
+                        <view class="goods-ingos">
+                            <view class="goods-title twolist-hidden">{{orderData.goodsName}}</view>
+                            <view class="goods-attr">
+                                <text class="size" style="display: -webkit-box;word-break: break-all;text-overflow: ellipsis;overflow: hidden;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">{{orderData.skuText}}</text>
+                                <!-- <text>颜色分类：龙凤呈祥</text> -->
+                            </view>
+                            <view class="price-num">
+                                <text class="price color-1">¥{{orderData.goodsSinglePrice}}</text>
+                                <text class="num">x{{orderData.goodsNum}}</text>
+                            </view>
+
+                        </view>
+                    </view>
+                </view>
+                <!-- 循环体 结束 -->
+
+            </view>
+            <view class="order-infos-view cell-reset">
+                <van-cell wx:if="{{orderData.deliveryType==2}}" value-class="cell-value" title="配送" value="包邮到家" />
+                <van-cell wx:if="{{orderData.deliveryType==3}}" value-class="cell-value" title="配送" value="门店自提" />
+
+                <van-cell-group>
+                    <van-field value="{{orderDesc }}" clearable="true" label="备注" placeholder="选填" input-align="right" bind:change="onChangeDesc" />
+                </van-cell-group>
+            </view>
+            <view class="total-view">
+                <text class="total-num">共{{orderData.goodsNum}}件商品 </text>
+                <text class="total-price" style="margin-right:20rpx">合计：<text class="color-1">¥{{orderData.sumPrice}}</text> </text>
+            </view>
+            <view class="order-infos-view cell-reset" style="border-top:12rpx solid #F5F5F5"></view>
+        </view>
+    </view>
+
+    <view class="bom-btn-wrap " style="z-index: 9999;box-shadow: 10rpx 10rpx 15rpx 0 black;height: 150rpx;">
+        <view class="dis-flex wq">
+            <view class=" flex-box t-l" style="padding-left:30rpx; display: flex;flex-wrap: wrap;align-items: center;">
+                <text class="col-1 f-32">合计：{{'¥'+orderData.sumPrice}}</text>
+            </view>
+            <view class=" t-c ls2  f-28" style="background-color:#ED4121;width: 238rpx;height: 80rpx;line-height: 80rpx;color: white;margin: 8rpx 30rpx 0;" bindtap="goCreateOrder" data-orderList="" data-url="/pages/good/pay">提交订单
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,12 @@
+/* pages/editAddress/editAddress.wxss */
+  .editaddress-container .van-cell{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+  }
+  .editaddress-container .van-cell, .editaddress-container .van-cell-black .van-cell__value, .editaddress-container .van-field__body, .editaddress-container .van-field__input, .editaddress-container .van-cell__right-icon-wrap{
+    height: 104rpx!important;
+    line-height: 104rpx!important;
+  }
+  .editaddress-container .van-cell .van-switch{
+    margin-top: 20rpx;
+  }

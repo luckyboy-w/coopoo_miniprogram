@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<navbar class="navbar-wrap b-b" parameter="{{parameter}}"></navbar>
+<view>
+   <view style="padding:36rpx 81rpx 108rpx">
+      <view class="payView">
+         <block>
+            <image class="successIcon" src="../../images/stateImg/paymentSuccessful.png" mode="cover"></image>
+            <text class=" f-32" style="color:black">成功支付￥{{payPrice}}</text>
+         </block>
+         <view bindtap="getDownload" class="f-34" style="height: 96rpx;width: 100%;text-align: center;line-height: 96rpx;color: white;margin-top: 120rpx;background-color: #ED4121;">
+            下载App查看订单详情
+         </view>
+      </view>
+      <!-- <view>
+      <button bindtap="clearUserInfo">
+         清除用户信息
+      </button>
+   </view> -->
+   </view>
+   <!-- <view>
+      <image style="width: 100%;height: auto; " mode='widthFix' src="../../images/collageImg/bgimg.png"></image>
+   </view> -->
+</view>

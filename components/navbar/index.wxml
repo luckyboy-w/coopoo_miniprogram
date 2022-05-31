@@ -1,0 +1,19 @@
+<view class='navbar' wx:if="{{parameter.navSty!='fixed'}}" style='position:relitive;padding-bottom:{{parameter.navSty=="fixed"?0:0}}rpx; background-color:{{parameter.bgcolor}};top:0; padding-top:{{navTop}}rpx;'>
+   <view class="con-wrap" style="height:{{navH+10}}rpx; line-height:{{navH}}rpx;">
+   </view>
+ </view>
+<view class='navbar' style='position:fixed;padding-bottom:{{parameter.navSty=="fixed"?0:10}}rpx; background-color:{{parameter.bgcolor}};top:0; padding-top:{{navTop}}rpx;'>
+   <view class="con-wrap" style="height:{{navH}}rpx; line-height:{{navH}}rpx;">
+      <view class="left-icon" wx:if='{{parameter.isLeftIcon==true && parameter.leftIcon !== 1 && parameter.leftIcon !== 2}}'>
+         <van-icon class="navicons" bindtap="goBack" size="42rpx" color="#1A1A1A" name="arrow-left" />
+      </view>
+      <view class="left-icon left-icon1" wx:if='{{parameter.isLeftIcon==true && parameter.leftIcon == 1}}'>
+         <view class="lefticon1"><van-icon class="nav-icons f-36 t-c" bindtap="goBack" style="color:#fff;" name="arrow-left" /></view>
+      </view>
+      <view class='navbarCon' style="text-align:{{parameter.textL}}" wx:if='{{parameter.navbar==1}}'>
+         <view style="color:{{parameter.fontColor}};" class="f-32 ls1">{{parameter.title}}</view>
+      </view>
+   </view>
+</view>
+<van-toast id="van-toast" />
+

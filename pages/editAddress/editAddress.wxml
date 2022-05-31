@@ -1,0 +1,59 @@
+<!--pages/editAddress/editAddress.wxml-->
+<navbar class="navbar-wrap" parameter="{{parameter}}"></navbar>
+<view class="editaddress-container">
+  <van-cell-group>
+    <van-field
+      class="van-cell-black"
+      value="{{ receiveUser }}"
+      label="收件人"
+      placeholder="请输入收件人姓名"
+      input-align="right"
+      bind:change="setName"
+    />
+    <van-field
+      class="van-cell-black"
+      value="{{ receivePhone }}"
+      label="手机号码"
+      placeholder="请输入手机号码"
+      input-align="right"
+      type="number"
+      bind:change="setPhone"
+      maxlength="11"
+    />
+   <van-cell class="van-cell-black" title="所在区域" placeholder="请选择省市区" value="{{address}}" is-link bindtap="openPicker"/>
+    <van-field
+      class="van-cell-black"
+      value="{{ street }}"
+      label="详细地址"
+      placeholder="如街道、小区、楼栋号、门牌号"
+      input-align="right"
+      maxlength="50"
+      bind:change="setStreet"
+    />
+  </van-cell-group>
+  <van-cell class="van-cell-black" title="设为默认地址">
+    <van-switch
+      checked="{{ checked }}"
+      active-color="black"
+      inactive-color="#f2f2f2"
+      bind:change="setDefault"
+    />
+  </van-cell>
+  
+
+  <view style="padding-top:60rpx">
+    <view block class="btn-main ls1" bindtap="save">保存</view>
+  </view>
+  <view class="slide-up-address" wx:if="{{ show }}">
+    <van-area
+      bind:cancel="cancelArea"
+      bind:confirm="confirmArea"
+      bind:change="changeArea"
+      area-list="{{ areaList }}"
+      value="{{codes}}"
+      title="选择省市区"
+    />
+  </view>
+  
+</view>
+<van-toast id="van-toast" />

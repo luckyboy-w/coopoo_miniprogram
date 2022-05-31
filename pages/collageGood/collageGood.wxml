@@ -1,0 +1,171 @@
+<navbar class="navbar-wrap b-b" parameter="{{parameter}}"></navbar>
+<view class='cate-wrap' style="width: 100%;overflow-x:hidden;">
+    <view id="app">
+        <view class="vw100">
+            <view class="vw100" style="height: 100vw;">
+                <view class=" card-wrap p-r" id="position1">
+                    <image wx:if="{{goodsData.goodsImgUrlList.length <1}}" src="{{goodsData.goodsCoverImgUrl}}" mode="scaleToFill"></image>
+                    <swiper wx:if="{{goodsData.goodsImgUrlList.length >=1}}" circular bindchange="moveServerProSwiper" current="{{swiperCurrent}}">
+                        <swiper-item wx:for="{{ imgListFile }}" wx:for-item="item" wx:key="index">
+                            <view class='videocover' data-id="{{index}}" bindtap='playbtn' wx:if="{{item.type=='video'}}">
+                                <view class='videocoverbg'></view>
+                                <image src='../../images/play.png' class='playbtn' bindtap="videoPlay" hidden="{{controls}}"></image>
+                            </view>
+                            <view wx:if="{{item.type=='video'}}">
+                                <video class='box-w block' id="video" src="{{item.url}}" show-center-play-btn="{{false}}" object-fit="contain" bindended="jieshu" poster="{{item.cover}}" controls="{{controls}}" show-mute-btn="true"></video>
+                            </view>
+                            <image mode="aspectFill" class="detail-banner-img" src="{{item}}" data-src="{{item}}" wx:if="{{item.type!='video'||!item.type}}"></image>
+                        </swiper-item>
+                    </swiper>
+                    <view class="swipindex">
+                        {{swiperCurrentNum}}/{{goodsData.goodsImgUrlList.length}}</view>
+                </view>
+            </view>
+            <view class="bdbt w100" style="min-height: 240rpx;">
+                <view class="flex w100" style="margin: 38rpx 0 0 30rpx;">
+                    <view style="width: 83.19%;padding-right: 0.9375rem;">
+                        <view class=" fw500 c00" style="line-height: 1.5625rem;font-size: 36rpx;">
+                            {{goodsData.goodsName}}
+                        </view>
+                    </view>
+                </view>
+                <view class="c6e" style="font-size: 22rpx;line-height: 1rem;letter-spacing:0.03125rem;margin: 0.4375rem 0.9375rem 0 30rpx;">
+                    {{goodsData.sellingPoint}}
+                </view>
+                <view class="flex w100" style="margin:40rpx 0 0.8125rem 30rpx;">
+                    <view style="width: 72.54%;line-height: 50rpx;height: 50rpx;">
+                        <view wx:if="{{!goodsData.maxGoodsSalePrice}}" class=" fw500 flex flex_nowrap" style="color: #ED4121; ">
+                            <view style="font-size: 28rpx;">拼团价</view>
+                            <view style="font-size: 36rpx;">￥{{goodsData.minGoodsSalePrice}}</view>
+                            <view style="font-size: 28rpx;margin-left: 50rpx;color: #999999 ;text-decoration: line-through;"> ￥{{goodsData.marketPrice}}</view>
+                        </view>
+                        <view wx:if="{{goodsData.maxGoodsSalePrice}}" class=" fw500 flex flex_nowrap" style="line-height: 50rpx;color: #ED4121;">
+                            <view style="font-size: 28rpx;">拼团价</view>
+                            <view style="font-size: 36rpx;">￥{{goodsData.minGoodsSalePrice}}-{{goodsData.maxGoodsSalePrice}}</view>
+                            <view style="font-size: 28rpx;margin-left: 50rpx;color: #999999 ;text-decoration: line-through;">￥{{goodsData.marketPrice}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{goodsData.goodsCollageInfoVo}}">
+            <view class="pst-rl flex f-nowrap f-alg-center w100" bindtap="popup" style="height: 13.33vw;">
+                <view class="f28 fw400 c24" style=" margin-left:30rpx; height: 1.3125rem;line-height: 1.3125rem;">
+                    他们正在拼，可直接参与
+                </view>
+                <!-- <view class="pst-ab" style="right: 30rpx;">
+                    <van-count-down use-slot time="{{activityTime}}" bind:change="onChange" format="HH:mm:ss" bind:finish="finished">
+                        <view class="bd1 dis-flex" style="width: 100%;flex-wrap: nowrap;">
+                            <view class="goodCountDown">{{ timeData.hours }}</view>
+                            <view class="goodCountDownDot">:</view>
+                            <view class="goodCountDown">{{ timeData.minutes }}</view>
+                            <view class="goodCountDownDot">:</view>
+                            <view class="goodCountDown">{{ timeData.seconds }}</view>
+                            <view style="font-size:22rpx;margin-left:10rpx;line-height: 36rpx;">后结束</view>
+                        </view>
+                    </van-count-down>
+                </view> -->
+            </view>
+            <view class="bdbt pst-rl flex f-nowrap f-alg-center w100" style="height: 150rpx;padding-bottom: 50rpx;">
+                <view class="c24" style="margin-left:30rpx; height: 80rpx;width: 470rpx;overflow-x:scroll;overflow-y: hidden; white-space: nowrap;">
+                    <view wx:for="{{ goodsData.goodsCollageInfoVo.wxAvatar }}" wx:for-item="item" wx:key="index" style="width: 80rpx; height: 80rpx; display: inline-block;margin-right: 15rpx;">
+                        <image style="border-radius: 50%;width: 100%;height: 100%;" src="{{item}}"></image>
+                    </view>
+                    <view style="width: 80rpx; height: 80rpx; display: inline-block;margin-right: 15rpx;">
+                        <image style="width: 100%;height: 100%;" src="../../images/addImg.png"></image>
+                    </view>
+                </view>
+                <view class="pst-ab f-28" style="right:30rpx;color: #ED4121;">
+                    还差{{goodsData.goodsCollageInfoVo.collageNum-goodsData.goodsCollageInfoVo.partCollageNum}}人拼成
+                </view>
+            </view>
+        </view>
+            <view class="flex f-nowrap f-alg-center w100 f17" style="height: 16vw;border-bottom: 1rpx solid #EAEAEA;">
+                <view style="background-color: #242424; width: 0.1875rem;height: 1rem;margin-left: 1.0625rem;">
+                </view>
+                <view class="fw400 f17 c24" style="margin-left: 0.375rem;line-height: 1.5rem;">
+                    商品详情
+                </view>
+            </view>
+            <view style="width: 100%;height: auto;padding-bottom: 4.5rem;">
+                <view style="font-size: 0;">
+                    <rich-text nodes="{{nodes}}"></rich-text>
+                </view>
+            </view>
+            <view class="download" id="download">
+                <view bindtap="goOtherGoods" style="width: 290rpx;text-align: center;background-color:white ;color: black;height: 98rpx;">
+                    <span class="span1">其他商品</span>
+                </view>
+                <view wx:if="{{!goodsData.partCollage}}" bindtap="popup" style="width: 460rpx;text-align: center;background-color:#ED4121 ;color: white;height: 98rpx;">
+                    <span wx:if="{{goodsDetailType==1}}" class="span1">一键拼团</span>
+                    <span wx:if="{{goodsDetailType==2}}" class="span1">参与拼团</span>
+                </view>
+                <button open-type="share" wx:if="{{goodsData.partCollage}}"  style="line-height: 98rpx;width: 460rpx;text-align: center;background-color:#ED4121 ;color: white;height: 98rpx;border-radius: 0;font-size: 32rpx;">
+                    邀请好友拼单
+                </button>
+            </view>
+        </view>
+        <view class="popup">
+            <view class="mask {{isShow?'maskpop':''}}"></view>
+            <view class="content {{isShow?'trans':''}}">
+                <view class="w100" style="height: 100%;overflow-y: scroll;">
+                    <view class="flex pst-ab w100" style="padding: 0.8125rem 0;align-items: flex-end;background-color: #FFFFFF;">
+                        <view>
+                            <image mode="aspectFill" style="height:8.18625rem;width: 6.9375rem;margin-left: 0.9375rem;" src="{{skuGoodsImgUrl?skuGoodsImgUrl:goodsData.goodsCoverImgUrl}}" />
+                        </view>
+                        <view style="margin-left: 0.8125rem;">
+                            <view class="f22 fw400 c00" style="height: 1.75rem;line-height: 1.75rem;margin-bottom: 0.6875rem;">
+                                ￥{{price?price:(goodsData.minGoodsSalePrice+"-"+goodsData.maxGoodsSalePrice)}}</view>
+                            <view class="f16 fw400 c00" style="height: 1.375rem;line-height: 1.375rem;margin-right: 0.75rem;display: -webkit-box;word-break: break-all;text-overflow: ellipsis;overflow: hidden;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">
+                                {{selectedSkuText?'已选'+selectedSkuText:'请选择'}}
+                            </view>
+                        </view>
+                        <view style="width: 50rpx;height: 50rpx;position: absolute;right: 1.375rem;top: 1.375rem;" bindtap="pophide">
+                            <image src="../../images/cl.png" style="width:0.731875rem ;height: 0.731875rem;float: right;" />
+                        </view>
+                    </view>
+                    <view style="overflow-y: scroll;min-height: 70%;padding-bottom: 5.5rem;padding-top:10.0625rem;">
+                        <view style="margin-bottom: 0.625rem;padding-top: 0.625rem;">
+                            <view class="wrap wrap-sku">
+                                <view class="product-box">
+                                    <view class="product-content">
+                                        <view class="product-delcom" wx:for="{{ simulatedDATA.specifications }}" wx:for-item="ProductItem" wx:key="index" wx:for-index="index">
+                                            <p class="f16 fw600 c00" style="height: 1.375rem; line-height: 1.375rem;margin-left: 15px;">
+                                                {{ProductItem.name}}
+                                            </p>
+                                            <ul class="product-footerlist flex f-wrap">
+                                                <li class="f15 c00 fw400" style="list-style:none;" wx:for="{{ ProductItem.item }}" wx:for-item="oItem" wx:key="skuId" wx:for-index="n" data-name="{{ProductItem.name}}" data-item="{{oItem.name}}" data-n="{{n}}" data-index="{{index}}" bindtap="specificationBtn" class="{{oItem.isShow?'':'noneActive'}} {{subIndex[index] == n?'productActive':''}}">
+                                                    {{oItem.name}}
+                                                </li>
+                                            </ul>
+                                        </view>
+                                        <!-- <p v-if="price" class="price">价格：<span style="color: red;">
+												{{price}}</span></p> -->
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- <view class="flex" style="border-top: 0.0625rem solid #6E6E6E;margin: 0.625rem 0.75rem;justify-content: space-between;padding-top: 1.6875rem;">
+                            <view class="f16 fw600 c00" style="margin-left: 0.1875rem;">
+                                购买数量
+                            </view>
+                            <view class="edit-num flex f-alg-center">
+                                <view class="minu-num" bindtap="minu">-</view>
+                                <view class="input-num">{{buynums}}</view>
+                                <view class="plus-num" bindtap="plus">+</view>
+                            </view>
+                        </view> -->
+                    </view>
+                    <view class="buyfooter">
+                        <view bindtap="enterSku"  style="width: 710rpx;height: 2.8rem;text-align: center;line-height: 2.8rem;background-color:#ED4121 ;">
+                            <span class="span1">发起拼团</span>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+</view>
+<view style="height:98rpx"></view>
+<wxLogin showLogin="{{showLogin}}"></wxLogin>

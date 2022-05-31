@@ -1,0 +1,76 @@
+<!-- <navbar class="navbar-wrap" parameter="{{parameter}}"></navbar> -->
+<view class='cate-wrap'>
+	<view class="swiper-container" style="height:113vw">
+		<swiper autoplay="true" circular="true" style="height:113vw" current="{{swiperCurrent}}" bindchange="swiperChange">
+			<swiper-item wx:for="{{ bannerList }}" wx:for-item="item" wx:key="index" data-id="{{item.id}}">
+				<image mode="aspectFill" style="width:100%;height:100%" src="{{item.image}}"></image>
+			</swiper-item>
+			<!-- </block> -->
+		</swiper>
+		<view class="dots">
+			<block wx:for="{{ bannerList}}" wx:for-item="item" wx:key="index" data-id="{{item.id}}">
+				<view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+			</block>
+		</view>
+	</view>
+	<!-- activityId:'',
+	activityType:'',
+	storeId:'',
+	inviteMemberId:'',
+	sourceType:'', -->
+	<!-- <view style="font-size: 30rpx;">拼接传的参:活动id{{activityId}};活动类型{{activityType}};门店id{{storeId}};用户id{{inviteMemberId}};来源标识{{sourceType}};</view> -->
+	<!-- <view bindtap="goActivityPage">测试拼团活动</view> -->
+	<!-- <view wx:if="{{showActivity}}" class="bgff dis-flex flex-x-between" style="margin:40rpx 30rpx">
+		<view style="width:100%;">
+			<view wx:if="{{activityType=='collage'}}" style="width:100%;height:255.6rpx;background-color: blue;" bindtap="goActivityPage" >
+				<view>拼团</view>
+			</view>
+			<view wx:if="{{activityType=='bargain'}}" style="width:100%;height:255.6rpx;margin-top:14rpx;background-color: green;" bindtap="goActivityPage">
+				<view>砍价</view>
+			</view>
+		</view>
+	</view> -->
+	<view wx:if="{{showActivity}}" class="bgff dis-flex flex-x-between" style="margin:40rpx 30rpx 0">
+			<view style="width:328rpx;height:140rpx;" data-activityType="bargain" bindtap="goActivityPage" data-type="wxminiprogram">
+				<image style="height: 100%;width: 100%;" src="../../images/bargain.png"></image>
+			</view>
+			<view style="width:328rpx;height:140rpx;" data-activityType="collage" bindtap="goActivityPage" data-type="wxminiprogram">
+				<image style="height: 100%;width: 100%;" src="../../images/collage.png"></image>
+			</view>
+	</view>
+	<view class="goodlist1 bgff">
+		<view wx:if="{{goodsList.length > 0 }}" class="t-c tc-tit">
+			<view class="f-w f-32" style="letter-spacing: 2rpx;">
+				<text class="rline rlinel" />
+				商品
+				<text class="rline rliner" />
+			</view>
+		</view>
+
+		<view wx:if="{{goodsList.length >0 }}" class="goodlist1">
+			<van-row gutter="46" class="con bgff">
+				<van-col span="12" wx:for="{{ goodsList }}" wx:for-item="item" wx:key="index" data-id="{{item.goodsId}}">
+					<view class="gc-block" bindtap="goNav" data-url="../good/detail?goodsId={{item.goodsId}}">
+						<view class="bimg-wrap">
+							<image class="bimg" mode="aspectFill" src="{{item.goodsCoverImgUrl}}"></image>
+						</view>
+						<view class="bm1">
+							<text class="f-w f-32 col-1"> ￥{{item.salePrice}}</text><text class="f-22 col-9" style="margin-left: 20rpx;text-decoration: line-through;">¥{{item.marketPrice}}</text>
+						</view>
+						<view class="bm4"> <text class="f-28 col-3">{{item.goodsName}}</text> </view>
+					</view>
+				</van-col>
+			</van-row>
+		</view>
+		<!-- 空数据 -->
+		<view class="nodata t-c" style="min-height: 830rpx;padding: 160rpx 0 40rpx;" wx:if="{{goodsList.length <= 0 }}">
+			<view class="t-c">
+				<image src="../../images/nodata.png" style="width:180rpx;height:180rpx" />
+			</view>
+			<view class="t-c f-24 col-9 ls2" style="padding-top:10rpx">没有找到相关的商品</view>
+		</view>
+		<!-- 空数据 end -->
+	</view>
+	<view class="loadtxt f-22 col-9 t-c" wx:if="{{goodsList.length > 0 && loadTitle !=''}}">{{loadTitle}}</view>
+
+</view>

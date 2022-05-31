@@ -1,0 +1,25 @@
+<!--components/wxLogin/wxLogin.wxml-->
+<view style="z-index: 99999;">
+    <van-action-sheet class="acwrap" show="{{ showLogin }}" round="{{false}}" bind:click-overlay="onClose">
+        <view class="inputStyle flex_nowrap flex_" style="align-items:center;border:1rpx solid black;justify-content: space-between;margin: 68rpx 30rpx 0;">
+            <input style="border:0px;padding-left:25rpx" value='{{phoneVal}}' bindinput="blurInput" class="col-3" type="number" maxlength="11" placeholder="请输入手机号" />
+            <view style="width: 200rpx;height: 60rpx;background-color: black!important;color: white!important;line-height: 60rpx;font-size: 28rpx;text-align: center;margin-right: 30rpx;" bindtap="sendCms">
+                {{codeTxt}}
+            </view>
+        </view>
+        <view class="inputStyle flex_nowrap flex_" style="align-items:center;border:1rpx solid black;margin:30rpx 30rpx 0;">
+            <input style="border:0px;padding-left:25rpx" class="col-3" value='{{phoneCode}}' type="number" bindinput="blurInputCode" maxlength="4" placeholder="请输入验证码"></input>
+        </view>
+        <view style="margin:20rpx 15% 20rpx; width: 70%;text-align:center">
+            <!-- <van-divider contentPosition="center">第三方登录</van-divider> -->
+            <view class="t-c f-26" style="display: flex; justify-content:center;align-items:center;">
+                <van-checkbox icon-size='26rpx' checked-color="#000000" value="{{ checked }}" bind:change="onChange"></van-checkbox>
+                <view> 我已阅读并同意<p style="color:#AEA991" bindtap="toAgreement">《靠谱家服务协议》</p>
+                </view>
+            </view>
+        </view>
+        <view class="dis-flex" style="padding: 20rpx 0;justify-content: center;">
+            <view bindtap="handZlogin" style="width: 538rpx;height: 88rpx;text-align: center;font-size: 32rpx; line-height: 88rpx; background-color:#ED4121 ;color:white;border-radius: 44rpx;">登录</view>
+        </view>
+    </van-action-sheet>
+</view>

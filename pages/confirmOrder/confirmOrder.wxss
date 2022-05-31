@@ -1,0 +1,126 @@
+/* pages/orderDetail/orderDetail.wxss */
+.orderdetail-container{
+    padding-bottom: 100rpx;
+  }
+  .hybg{
+   flex-wrap: nowrap;
+  }
+  .orderdetail-container .address-view{
+    background-color: #fff;
+    min-height: 80rpx;
+    border-bottom: 12rpx solid #F5F5F5 ;
+    padding: 35rpx 35rpx;
+  }
+  .orderdetail-container .people-name{
+    height:40rpx;
+    line-height: 40rpx;
+    margin-left: 15rpx;
+    margin-right: 60rpx;
+  }
+  .orderdetail-container .mobile{
+    height:40rpx;
+  }
+  .orderdetail-container .address{
+    margin-top: 20rpx;
+    /* padding-left: 30rpx; */
+    line-height:40rpx;
+    font-size:24rpx;
+    font-weight:normal;
+    color:#000000;
+  }
+  .orderdetail-container .order-shop-view{
+    margin-top: 8rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: #fff;
+    padding: 0 35rpx;
+  }
+  .orderdetail-container .shop-name{
+    margin-left: 20rpx;
+    font-size: 30rpx;
+    font-family:PingFangSC-Medium,PingFang SC;
+  }
+  .orderdetail-container .goods-view{
+    background-color: #fff;
+  }
+  .orderdetail-container .order-goods-view{
+    padding: 32rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 12rpx solid #F5F5F5 ;
+  }
+  .orderdetail-container .goods-left{
+    flex: 0 0 212rpx;
+    height: 198rpx;
+  }
+  .orderdetail-container .goods-right{
+    flex: 0 0 456rpx;
+    height: 198rpx;
+  }
+  .orderdetail-container .goods-title{
+    height:80rpx;
+    font-size:28rpx;
+    color:#333333;
+    line-height:40rpx;
+  }
+  .orderdetail-container .goods-attr{
+    height:40rpx;
+    font-size:22rpx;
+    color:#999999;
+    margin-top: 10rpx;
+    margin-bottom: 20rpx;
+  }
+  .orderdetail-container .size{
+    margin-right: 30rpx;
+  }
+  .orderdetail-container .price-num{
+    height: 40rpx;
+  }
+  .orderdetail-container .price{
+    height:40rpx;
+    line-height: 40rpx;
+    font-size:28rpx;
+    color:#333333;
+    margin-right: 30rpx;
+  }
+  .orderdetail-container .num{
+    height:40rpx;
+    line-height: 40rpx;
+    font-size:22rpx;
+    color:#999999;
+  }
+  .orderdetail-container .total-view{
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: right;
+    color: #333333;
+    font-size: 28rpx;
+    padding: 0 32rpx;
+  }
+  .orderdetail-container .total-num{
+    margin-right: 50rpx;
+  }
+  .orderdetail-container .color-price{
+    color: #F47A26;
+  }
+  .orderdetail-container .card-common{
+    min-height: 212rpx;
+    padding: 32rpx;
+    font-size:28rpx;
+    color: #333333;
+  }
+  .orderdetail-container .card-common-label{
+    color: #808080;
+    margin: 54rpx 0 42rpx 0;
+  }
+  .orderdetail-container .card-common-item{
+    margin-bottom: 26rpx;
+  }  
+  .grey-bg{
+    height: 8rpx;
+    background-color: #f2f2f2;
+  }
+  .cell-value{
+    color: #333333!important;
+  }
